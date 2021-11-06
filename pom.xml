@@ -102,7 +102,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
+<!-- JSF -->
 		<!-- JSF -->
 		<dependency>
 			<groupId>org.apache.myfaces.core</groupId>
