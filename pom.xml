@@ -102,8 +102,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-<!-- JSF -->
-		<!-- JSF -->
+
 		<dependency>
 			<groupId>org.apache.myfaces.core</groupId>
 			<artifactId>myfaces-impl</artifactId>
@@ -167,22 +166,7 @@
 <scope>test</scope>
 </dependency>
 	</dependencies>
-	<distributionManagement>
-<snapshotRepository>
-<id>nexus-snapshots</id>
-<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
-</snapshotRepository>
-<repository>
-<id>nexus-releases</id>
-<url>http://localhost:8081/nexus/content/repositories/releases/</url>
-</repository>
-</distributionManagement>
-<repositories>
-<repository>
-<id>maven-group</id>
-<url>http://localhost:8081/repository/maven-group/</url>
-</repository>
-</repositories>
+  
 
 	<build>
 		<plugins>
