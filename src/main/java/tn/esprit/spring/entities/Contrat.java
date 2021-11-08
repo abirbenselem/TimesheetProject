@@ -49,13 +49,7 @@ public class Contrat implements Serializable {
 		this.dateDebut = dateDebut;
 	}
 
-	public int getReference() {
-		return reference;
-	}
-
-	public void setReference(int reference) {
-		this.reference = reference;
-	}
+	
 
 	public String getTypeContrat() {
 		return typeContrat;
@@ -79,6 +73,12 @@ public class Contrat implements Serializable {
 
 	public void setEmploye(Employe employe) {
 		this.employe = employe;
+	}
+	public int getId() {
+		return reference;
+	}
+	public void setId(int id) {
+		this.reference = id;
 	}
 	
 	

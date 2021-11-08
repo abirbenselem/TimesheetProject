@@ -76,7 +76,7 @@ public class EmployeServiceImpl implements IEmployeService {
 
 	public int ajouterContrat(Contrat contrat) {
 		contratRepoistory.save(contrat);
-		return contrat.getReference();
+		return contrat.getId();
 	}
 
 	public void affecterContratAEmploye(int contratId, int employeId) {
