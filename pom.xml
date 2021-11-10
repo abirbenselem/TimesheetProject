@@ -234,7 +234,7 @@
 	<repositories>
     <repository>
       <id>maven-group</id>
-      <url>http://localhost:8081/nexus/content/groups/maven-group/</url>
+      <url>http://localhost:8081/nexus/content/groups/maven-group</url>
     </repository>
       </repositories> 
       	<distributionManagement>
@@ -244,7 +244,7 @@
     </snapshotRepository>
     <repository> 
       <id>releases</id>
-      <url>http://localhost:8081/nexus/content/repositories/releases/</url>
+      <url>http://localhost:8081/nexus/content/repositories/releases</url>
     </repository> 
      </distributionManagement>
 	
