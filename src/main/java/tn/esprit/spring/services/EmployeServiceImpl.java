@@ -31,23 +31,30 @@ public class EmployeServiceImpl implements IEmployeService {
 	@Autowired
 	TimesheetRepository timesheetRepository;
 
+ 
+	public EmployeServiceImpl(EmployeRepository employeRepository) {
+		
+		this.employeRepository = employeRepository;
+	}
+
 	public int ajouterEmploye(Employe employe) {
 		employeRepository.save(employe);
 		return employe.getId();
 	}
 
 	public void mettreAjourEmailByEmployeId(String email, int employeId) {
-		Employe employe = employeRepository.findById(employeId).orElseGet(Employe::new);
+		Employe employe = employeRepository.findById(employeId).orElse(null);
+		if(employe!=null) {
 		employe.setEmail(email);
-		employeRepository.save(employe);
+		employeRepository.save(employe);}
 
 	}
 
 	@Transactional	
 	public void affecterEmployeADepartement(int employeId, int depId) {
-		Departement depManagedEntity = deptRepoistory.findById(depId).orElseGet(Departement::new);
+		Departement depManagedEntity = deptRepoistory.findById(depId).orElse(null);
 		Employe employeManagedEntity = employeRepository.findById(employeId).orElse(null);
-
+		if(employeManagedEntity!=null && depManagedEntity!=null) {
 		if(depManagedEntity.getEmployes() == null){
 
 			List<Employe> employes = new ArrayList<>();
@@ -57,59 +64,54 @@ public class EmployeServiceImpl implements IEmployeService {
 
 			depManagedEntity.getEmployes().add(employeManagedEntity);
 
-		}
+		}}
 
 	}
 	@Transactional
 	public void desaffecterEmployeDuDepartement(int employeId, int depId)
 	{
-		Departement dep = deptRepoistory.findById(depId).orElseGet(Departement::new);
-
-		int employeNb = dep.getEmployes().size();
+		Departement dep = deptRepoistory.findById(depId).orElse(null);
+		if(dep!=null)
+		{int employeNb = dep.getEmployes().size();
+		
 		for(int index = 0; index < employeNb; index++){
 			if(dep.getEmployes().get(index).getId() == employeId){
 				dep.getEmployes().remove(index);
 				break;//a revoir
 			}
-		}
+		}}
 	}
 
-	public int ajouterContrat(Contrat contrat) {
-		contratRepoistory.save(contrat);
-		return contrat.getReference();
+/*	public Contrat affecterContratAEmploye(int contratId, int employeId) {
+		Contrat contratManagedEntity = contratRepoistory.findById(contratId).orElse(null);
+		Employe employeManagedEntity = employeRepository.findById(employeId).orElse(null);
+if(employeManagedEntity!=null && contratManagedEntity!=null)
+		{contratManagedEntity.setEmploye(employeManagedEntity);
+		contratRepoistory.save(contratManagedEntity);}
+		return contratManagedEntity;
 	}
-
-	public void affecterContratAEmploye(int contratId, int employeId) {
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).orElseGet(Contrat::new);
-		Employe employeManagedEntity = employeRepository.findById(employeId).orElseGet(Employe::new);
-
-		contratManagedEntity.setEmploye(employeManagedEntity);
-		contratRepoistory.save(contratManagedEntity);
-		
-	}
-
+*/
 	public String getEmployePrenomById(int employeId) {
-		Employe employeManagedEntity = employeRepository.findById(employeId).orElseGet(Employe::new);
-		return employeManagedEntity.getPrenom();
+		Employe employeManagedEntity = employeRepository.findById(employeId).orElse(null);
+		if(employeManagedEntity!=null)
+		{return employeManagedEntity.getPrenom();}
+		else
+		{return "not found";}
 	}
 	public void deleteEmployeById(int employeId)
 	{
-		Employe employe = employeRepository.findById(employeId).orElseGet(Employe::new);
+		Employe employe = employeRepository.findById(employeId).orElse(null);
 
 		//Desaffecter l'employe de tous les departements
 		//c'est le bout master qui permet de mettre a jour
 		//la table d'association
-		for(Departement dep : employe.getDepartements()){
-			dep.getEmployes().remove(employe);
-		}
-
-		employeRepository.delete(employe);
-	}
-
-	public void deleteContratById(int contratId) {
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).orElseGet(Contrat::new);
-		contratRepoistory.delete(contratManagedEntity);
-
+		if(employe!=null)
+		{	for(Departement dep : employe.getDepartements()){
+			 
+			 dep.getEmployes().remove(employe); 
+		}}
+		 
+		employeRepository.delete(employe);//NOSONAR
 	}
 
 	public int getNombreEmployeJPQL() {
@@ -148,6 +150,24 @@ public class EmployeServiceImpl implements IEmployeService {
 
 	public List<Employe> getAllEmployes() {
 				return (List<Employe>) employeRepository.findAll();
+	}
+
+	@Override
+	public int ajouterContrat(Contrat contrat) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void affecterContratAEmploye(int contratId, int employeId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteContratById(int contratId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
