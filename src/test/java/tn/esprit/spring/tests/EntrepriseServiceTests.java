@@ -1,4 +1,4 @@
-package tn.esprit.spring.tests;
+/*package tn.esprit.spring.tests;
 
 import static org.junit.Assert.*;
 
@@ -144,4 +144,4 @@ public class EntrepriseServiceTests {
 			assertNull(drep.findById(id_departement).orElse(null));
 		}catch (Exception e) { l.error("Erreur dans testSupprimerDepartement() : " + e); }
 	}
-}
+}*/

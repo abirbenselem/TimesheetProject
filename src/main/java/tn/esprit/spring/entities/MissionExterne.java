@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 @Entity
 public class MissionExterne extends Mission {
 	
-	private static final long serialVersionUID = -3046278688391172322L;
+private static final long serialVersionUID = -3046278688391172322L;
 	
 	
 	private String emailFacturation;
@@ -19,11 +19,7 @@ public class MissionExterne extends Mission {
 	}
 
 
-	public MissionExterne(String name, String description, String emailFacturation, float tauxJournalierMoyen) {
-		super(name, description);
-		this.emailFacturation = emailFacturation;
-		this.tauxJournalierMoyen = tauxJournalierMoyen;
-	}
+	
 
 
 	public String getEmailFacturation() {
@@ -45,7 +41,4 @@ public class MissionExterne extends Mission {
 		this.tauxJournalierMoyen = tauxJournalierMoyen;
 	}
 	
-	
-	
-
 }
