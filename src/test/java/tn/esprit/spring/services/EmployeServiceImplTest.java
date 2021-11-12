@@ -55,7 +55,7 @@ class EmployeServiceImplTest {
  
 	@Test
 	void testAjouterEmploye() {
-		Employe emp=new Employe("rami", "joudi", "r@gmail.com", true, Role.INGENIEUR);
+		Employe emp=new Employe("ayoub", "smayen", "r@gmail.com", true, Role.INGENIEUR);
 		empService.ajouterEmploye(emp);
 		
 		ArgumentCaptor<Employe> empArgumentCaptor= ArgumentCaptor.forClass(Employe.class);
@@ -70,7 +70,7 @@ class EmployeServiceImplTest {
 	}
 	@Test
 	void testDeleteEmployeById() {
-		Employe emp=new Employe("rami", "joudi", "r@gmail.com", true, Role.INGENIEUR);
+		Employe emp=new Employe("ayoub", "smayen", "r@gmail.com", true, Role.INGENIEUR);
 		emp.setId(1);
 		//test
 		
